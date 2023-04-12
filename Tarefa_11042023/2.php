@@ -1,17 +1,21 @@
 <?php
-    $n = 9; 
 
-    MsN($n);
+$n = 100;
 
-    function MsN($n) {
-        for ($i = 1; $i <= $n; $i++) {
-          for ($j = 1; $j <= $i; $j++) {
-            echo $j . " ";
-          }
-          for ($k = $i + 10; $k <= $n; $k++) {
-            echo $n . " ";
-          }
-          echo "<br>";
-        }
+exibirSerie($n); 
+
+function exibirSerie($n) {
+    $serie = array();
+    for ($i = 1; $i <= $n; $i++) {
+      for ($j = 1; $j <= $i; $j++) {
+        $serie[] = $n;
+        echo $j . " ";
       }
+      for ($k = $n; $j <= $i; $k++) {
+        $serie[] = $n;
+        echo $n . " ";
+      }
+      echo "<br>";
+    }
+  }
 ?>
