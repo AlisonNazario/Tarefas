@@ -23,7 +23,7 @@ function fatorial($n) {
 <body>
   <form method="post">
     <label for="numero">Digite um número inteiro:</label>
-    <input type="number" id="numero" name="numero" required>
+    <input type="text" id="numero" name="numero" required>
     <button type="submit">Calcular Fatorial</button>
   </form>
 
