@@ -1,37 +1,16 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-  
-<?php
-    $cartelas = isset($_POST['cartelas']) ? $_POST['cartelas'] : 1;
-    $numero = isset($_POST['numero']) ? $_POST['numero'] : 0;
-   
-    function as($numero){
-     str_replace("*");
-    }
-?>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Document</title>
+    <title>Gerador de Cartelas da Mega Sena</title>
 </head>
 <body>
-<form method="post">
-Número de cartelas: <input type="text" name="cartelas" id="cartelas"><br>
-Número para buscar: <input type="text" name="numero" id="numero"><br>
-<input type="submit" value="Gerar">
-</form>
-<?php
-
-    for ($y = 0; $y < $cartelas; $y++){
-        echo "<br>";
-        for ($x = 0; $x < 6; $x++)    
-            echo rand(1,6)." | ";
-        
-       
-       
-    }
-   
-      
-    
-?>
+    <h1>Gerador de Cartelas da Mega Sena</h1>
+    <form action="gerar_cartelas.php" method="post">
+        <label for="num_cartelas">Quantidade de cartelas:</label>
+        <input type="number" name="num_cartelas" id="num_cartelas" min="1" required><br><br>
+        <label for="numero_busca">Número para busca:</label>
+        <input type="number" name="numero_busca" id="numero_busca" min="1" max="60" required><br><br>
+        <input type="submit" value="Gerar Cartelas">
+    </form>
 </body>
 </html>
