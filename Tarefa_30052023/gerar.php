@@ -29,4 +29,20 @@
         return $cartela;
     }
     
+      // Gera as cartelas
+      for ($i = 1; $i <= $num_cartelas; $i++) {
+        $cartela = gerarCartela();
+        echo '<h3>Cartela ' . $i . ':</h3>';
+        echo '<ul>';
+        foreach ($cartela as $numero) {
+            if ($numero == $numero_busca) {
+                echo '<li>' . $numero . ' *</li>';
+            } else {
+                echo '<li>' . $numero . '</li>';
+            }
+        }
+        echo '</ul>';
+    }
     ?>
+</body>
+</html>
