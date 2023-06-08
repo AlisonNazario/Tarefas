@@ -1,45 +1,50 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Resultado - Gerador de Cartelas da Mega Sena</title>
-</head>
-<body>
-    <h1>Resultado - Gerador de Cartelas da Mega Sena</h1>
-    <?php
+<?php
+$qc = $_POST['num_cartelas'];
+$nb = $_POST['numero_busca'];
 
-    $num_cartelas = $_POST['num_cartelas'];
-    $numero_busca = $_POST['numero_busca'];
-
-    function gerarNumeroAleatorio()
-    {
-        return rand(1, 61);
+function gerarCartela() {
+    $cartela = array();
+    for ($i = 0; $i < 6; $i++) {
+        $numero = rand(1, 61);
+        $cartela[] = $numero;
     }
+    return $cartela;
+}
 
-    function gerarCartela()
-    {
-        $cartela = array();
-        while (count($cartela) < 6) {
-            $numero = gerarNumeroAleatorio();
-            if (!in_array($numero, $cartela)) {
-                $cartela[] = $numero;
-            }
+$cartelas = array();
+$tne = 0;
+for ($i = 0; $i < $qc; $i++) {
+    $cartela = gerarCartela();
+    $cartelas[] = $cartela;
+    $qne = array_count_values($cartela)[$nb] ?? 0;
+    $tne += $qne;
+}
+
+echo "Cartelas:<br>";
+foreach ($cartelas as $cartela) {
+    foreach ($cartela as $numero) {
+        echo "|";
+        if ($numero == $nb) {
+            echo $numero . "* ";
+        } else {
+            echo $numero . " | ";
+           
         }
-        return $cartela;
     }
+  
+    $sc = array_sum($cartela);
+    $md = $sc / 6;
+    echo "| " . $sc . " | " . $md . "<br>";
+}
 
-      for ($i = 1; $i <= $num_cartelas; $i++) {
-        $cartela = gerarCartela();
-        echo '<h3>Cartela ' . $i . ':</h3>';
-        echo '<ul>';
-        foreach ($cartela as $numero) {
-            if ($numero == $numero_busca) {
-                echo '<li>' . $numero . ' *</li>';
-            } else {
-                echo '<li>' . $numero . '</li>';
-            }
-        }
-        echo '</ul>';
-    }
-    ?>
-</body>
-</html>
+$sm = 0;
+foreach ($cartelas as $cartela) {
+    $sm += array_sum($cartela);
+}
+$mm = $sm / ($qc * 6);
+
+echo "<br>";
+echo "Soma da Matriz: " . $sm . "<br>";
+echo "Média da Matriz: " . $mm . "<br>";
+echo "Número " . $nb . " foi encontrado " . $tne . " vezes";
+?>
